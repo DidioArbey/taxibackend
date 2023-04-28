@@ -1,26 +1,51 @@
 import mongoose from "mongoose";
 
 //crear el shema
-const productShema = new mongoose.Schema(
+const taxiShema = new mongoose.Schema(
     {
-        description:{
-            type:String,
-            require:[true,"Completa el campo"]
+        telefono_usuario: {
+        type: Number,
+        ref: 'Usuario',
+        required: [true,"Completa el campo"]
         },
-        stock:{
-            type:Number,
-            require:[true,"Completa el campo"]
+        direccion: {
+            type: String,
+            required: [true,"Completa el campo"]
         },
-        price:{
-            type:Number,
-            require:[true,"Completa el campo"]
+        barrio: {
+            type: String,
+            required: [true,"Completa el campo"]
+        },
+        observacion: {
+            type: String
+        },
+        movil_taxi: {
+            type: String,
+        },
+        placa_taxi: {
+            type: String,
+        },
+        llego: {
+            type: Boolean,
+            default: false
+        },
+        recepcionado: {
+            type: Date,
+            default: Date.now
+        },
+        asignado: {
+            type: Date
+        },
+        recogido: {
+            type: Date
         },
     },
     {
         timestamps:true,
         versionKey:false
     }
+
 );
 
 //crear un modelo aprtir del shema
-export const ProductModel = mongoose.model("Product",productShema)
+export const TaxitModel = mongoose.model("Taxi",taxiShema)

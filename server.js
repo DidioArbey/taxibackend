@@ -9,7 +9,7 @@ const app = express()
 dotenv.config()
 app.use(cors())
 app.use(express.json())
-app.use("/api/products",router)
+app.use("/api/Taxis",router)
 
 app.use(urlencoded({extended:true}))
 

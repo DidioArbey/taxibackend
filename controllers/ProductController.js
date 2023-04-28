@@ -1,58 +1,58 @@
-import { ProductModel } from "../models/ProductModels.js";
+import { TaxitModel } from "../models/ProductModels.js";
 
-export const getProducts = async (req,res)=>{
+export const getTaxis = async (req,res)=>{
     try {
-        const products = await ProductModel.find()
-        res.status(200).json(products)
+        const Taxis = await TaxitModel.find()
+        res.status(200).json(Taxis)
     } catch (error) {
         res.status(500).json({message:error.message})
     }
 }
 
-export const getProduct = async (req,res)=>{
+export const getTaxi = async (req,res)=>{
     try {
         const {id} = req.params
-        const product = await ProductModel.findById(id)
-        if(!product){
-            return res.status(404).json(`el producto con id: ${id} no se pudo encontrar`)
+        const Taxi = await TaxitModel.findById(id)
+        if(!Taxi){
+            return res.status(404).json(`el viaje con id: ${id} no se pudo encontrar`)
         }
-        res.status(200).json(product)
+        res.status(200).json(Taxi)
     } catch (error) {
         res.status(500).json({message:error.message})
     }
 }
 
-export const cretaeProduct = async (req,res)=>{
+export const cretaeTaxi = async (req,res)=>{
     try {
-        const product = await ProductModel.create(req.body)
-        res.status(201).json(product)
+        const Taxi = await TaxitModel.create(req.body)
+        res.status(201).json(Taxi)
     } catch (error) {
-        res.status(500).json({message:"error al crear el producto"})
+        res.status(500).json({message:"error al crear el Viaje"})
     }
 }
 
-export const updateProduct = async (req,res)=>{
+export const updateTaxi = async (req,res)=>{
     try {
         const {id} = req.params
-        const product = await ProductModel.findByIdAndUpdate(
+        const Taxi = await TaxitModel.findByIdAndUpdate(
             {_id: id},
             req.body,
             {new:true}
         )
-        res.status(200).json(product)
+        res.status(200).json(Taxi)
     } catch (error) {
-        res.status(500).json({message:"error al actualizar el producto"})
+        res.status(500).json({message:"error al actualizar el Viaje"})
     }
 }
 
-export const deletProduct = async (req,res)=>{
+export const deletTaxi = async (req,res)=>{
     try {
         const {id} = req.params
-        const product = await ProductModel.findByIdAndDelete(id)
-        if(!product){
-            return res.status(404).json(`el producto con id: ${id} no se pudo encontrar`)
+        const Taxi = await TaxitModel.findByIdAndDelete(id)
+        if(!Taxi){
+            return res.status(404).json(`el Viaje con id: ${id} no se pudo encontrar`)
         }
-        res.status(200).json("producto eliminado exitosamente")
+        res.status(200).json("Viaje eliminado exitosamente")
     } catch (error) {
         res.status(500).json({message:error.message})
     }
